@@ -1,0 +1,62 @@
+server:
+  port: 8081
+  servlet:
+      context-path: /demoapi
+img:
+  upload-path: /data
+spring:
+  application:
+    name: dojo-api
+  main:
+    banner-mode: "off"
+  http:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+# net.devh:grpc-client-spring-boot-starter:1.4.2.RELEASE的配置方法
+#grpc:
+#  client:
+#    simple-svc:
+#      host:
+#        - 192.168.31.201
+#      port:
+#        - 50051
+#      plaintext: true
+
+# net.devh:grpc-client-spring-boot-starter:2.5.1.RELEASE的配置方法
+grpc:
+  client:
+    simple-svc:
+      address: 'static://localhost:50051'
+      enableKeepAlive: true
+      keepAliveWithoutCalls: true
+      negotiationType: plaintext
+
+jwt:
+  header: Authorization
+  secret: loanmarket
+  appExpiration: 86400
+  opExpiration: 3600
+  auth: 
+    path: /auth
+  validate: 
+    path: /api
+
+logging:
+  level:
+    tk:
+      mybatis:
+        pagehelper:
+          mapper: TRACE
+
+demo:
+  name: Andy
+  gender: Male
+
+management:
+  port: 54001
+  # close security. 关闭身份验证，否则无法查询出数据
+  security:
+    enabled: false

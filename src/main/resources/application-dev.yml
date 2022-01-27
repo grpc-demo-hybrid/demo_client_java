@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    url: "jdbc:mysql://127.0.0.1:3306/loanmarketdb?useUnicode=true&characterEncoding=UTF-8&rewriteBatchedStatements=true&useConfigs=maxPerformance&useSSL=false&allowMultiQueries=true"
+    username: root
+    password: *
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: 
+    database: 0
+    pool:
+      max-active: 20
+      max-idle: 20
+      min-idle: 0
+
+redisson:
+    address: 'redis://127.0.0.1:6379'
+    password:
+
+s3:
+  accessKey: *
+  accessToken: *
+  region: *
+  bucket: *
+

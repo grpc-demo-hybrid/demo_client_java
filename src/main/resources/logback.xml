@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration  scan="true" scanPeriod="5 minutes">
+  <substitutionProperty name="default_pattern"
+                        value="%date [%thread] %-5level %logger{80} [%file:%line] - %msg%n" />
+
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>
+        <![CDATA[
+        %d{yyyy-MM-dd HH:mm:ss.SSS, Asia/Shanghai} [%t] %p %logger [%mdc{X_TRACE_ID},%mdc{TRACE_ID}] ${CONTEXT_NAME} - %m%n
+        ]]>
+      </pattern>
+    </encoder>
+  </appender>
+
+  <appender name="FILE"
+            class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>logs/cashloanUserApi.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>logs/cashloanUserApi.log.%d{yyyy-MM-dd}</fileNamePattern>
+      <MaxHistory>90</MaxHistory>
+    </rollingPolicy>
+    <layout class="ch.qos.logback.classic.PatternLayout">
+      <pattern>${default_pattern}</pattern>
+    </layout>
+  </appender>
+
+  <root>
+    <level value="INFO" />
+    <appender-ref ref="FILE" />
+    <appender-ref ref="STDOUT" />
+  </root>
+</configuration>
